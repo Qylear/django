@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Ajouter un commentaire à l'article : {{ Article.title }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="article_id" value="{{ Article.id }}">
+        <button type="submit">Ajouter un commentaire</button>
+        <a href="{% url 'post_detail' Article.id %}">Annuler</a>
+    </form>
+{% endblock %}

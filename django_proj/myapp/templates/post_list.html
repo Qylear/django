@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Articles</title>
+</head>
+<body>
+    <h1>Liste des Articles</h1>
+
+    {% if articles %}
+        <ul>
+        {% for article in articles %}
+            <li>
+                <strong>{{ article.title }}</strong><br>
+                <em>Publié le : {{ article.created_at }}</em><br>
+                <p>{{ article.content|truncatewords:20 }}</p>
+                <a href="{% url 'post_detail' article.id %}">Lire la suite</a>
+            
+                <a href="/post/{{ Article.id }}/">{{ post.title }}</a> 
+                ( <a href="/post/{{ Article.id }}/edit/">Modifier</a> | 
+                <a href="/post/{{ Article.id }}/delete/">Supprimer</a> )
+            </li>
+        {% endfor %}
+        </ul>
+        <a href="/post/create/">Créer un nouvel article</a>
+    {% else %}
+        <p>Aucun article trouvé.</p>
+    {% endif %}
+</body>
+</html>
